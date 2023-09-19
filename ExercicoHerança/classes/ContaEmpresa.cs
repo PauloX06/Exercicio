@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,7 +23,7 @@ namespace ExercicoHerança.classes
         }
         public void RealizarEmprestimo(double valorEmprestimo)
         {
-            if (valorEmprestimo <= LimiteEmprestimo)
+            if (valorEmprestimo <= LimiteEmprestimo - TotalEmprestimo)
             {
                 Saldo += valorEmprestimo;
                 TotalEmprestimo += valorEmprestimo;
@@ -30,18 +31,26 @@ namespace ExercicoHerança.classes
             }
             else
             {
-                Console.WriteLine("O Emprestimo não pode ser concedido");
+                Console.WriteLine("Valor indisponivel");
             }
 
         }
         public override void Saque(double valor)
         {
 
-            if (valor > 5000)
+            if (valor <= Saldo)
             {
-                valor += 5;
+               Saldo -= valor;
             }
-            base.Saque(valor);
+            if(valor >= 5000)
+            {
+                Saldo -= 5;
+            }
+            else
+            {
+                Console.WriteLine("Saldo Insuficiente");
+            }
+            
         }
     }
 }

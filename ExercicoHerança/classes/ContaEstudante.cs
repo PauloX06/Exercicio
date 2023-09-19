@@ -25,24 +25,15 @@ namespace ExercicoHerança.classes
 
         public override void Saque(double valor)
         {
-            if (valor <= valor)
+            if (valor <= Saldo + LimiteChequeEspecial)
             {
-                base.Saque(valor);
-
-            }
-            else if(valor <= (Saldo+LimiteChequeEspecial))
-            {
-                Saldo = 0;
-                LimiteChequeEspecial -= valor;
-                Console.WriteLine("Saque realizado com sucesso");
+                Saldo -= valor;
             }
             else
             {
-                Console.WriteLine("Saldo insuficiente e limite de cheque especial excedido");
+                Console.WriteLine("Saldo Insuficiente");
             }
-            
         }
-
 
     }
     
